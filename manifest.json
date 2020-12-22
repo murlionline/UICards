@@ -1,0 +1,59 @@
+{
+	"_version": "1.14.0",
+	"sap.app": {
+		"id": "ns.SupplierCard",
+		"type": "card",
+		"title": "Top 5 Products of Suppliers",
+		"subTitle": "Robert Brown Entertainment",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.card": {
+        "configuration": {
+            "destinations": {
+                "myDestination": {
+                    "name": "ES5"
+                }
+            }
+        },
+		"type": "List",
+        "designtime": "dt/configuration",
+		"header": {
+			"title": "Top 5 Products of Suppliers",
+			"subTitle": "Robert Brown Entertainment",
+			"icon": {
+				"src": "sap-icon://desktop-mobile"
+			},
+			"status": {
+				"text": "3 of 3"
+			}
+        },
+        "data": {
+            "request": {
+                "url": "{{destinations.myDestination}}/sap/opu/odata/iwbep/GWSAMPLE_BASIC/ProductSet",
+                "parameters": {
+                    "$filter": "SupplierID eq '0100000015'",
+                    "$orderby": "Price desc",
+                    "$top": "5",
+                    "$format": "json"
+                },
+                "withCredentials": true
+            },
+            "path": "/d/results"
+        },
+		"content": {
+			"data": {
+                "path": "/d/results"
+			},
+			"item": {
+				"title": "{Name}",
+				"description": "{Description}",
+				"highlight": "Information"
+			}
+		}
+	},
+    "sap.platform.mobilecards": {
+        "compatible": true
+    }
+}
