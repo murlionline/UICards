@@ -1,0 +1,123 @@
+{
+    "_version": "1.15.0",
+    "sap.app": {
+        "id": "ns.Leads",
+        "type": "card",
+        "title": "Leads in CRM System",
+        "subTitle": "",
+        "applicationVersion": {
+            "version": "1.0.3"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "phone": true,
+            "tablet": true
+        },
+        "icons": {
+            "icon": "https://cdn.imgbin.com/20/24/18/imgbin-hubspot-inc-inbound-marketing-account-based-marketing-sales-marketing-ZHwGQSvxG1MD41djnaN0APiHY.jpg",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        }
+    },
+    "sap.card": {
+        "type": "Object",
+        "designtime": "dt/configuration",
+        "header": {
+			"icon": {
+                "src": "https://cdn.imgbin.com/20/24/18/imgbin-hubspot-inc-inbound-marketing-account-based-marketing-sales-marketing-ZHwGQSvxG1MD41djnaN0APiHY.jpg"
+
+            },
+            "title": "Leads",
+			"subTitle": "Enterprise Accounts"
+        },
+        "data": {
+				"request": {
+					"headers": {
+						"Authorization": "User XXX, Organization YYY, Element ZZZ=",
+						"Accept": "application/json",
+						"Content-Type": "application/json"
+                    },
+                    "url": "https://api.openconnectors.ap10.ext.hana.ondemand.com/elements/api-v2/contacts?where=email='bh@hubspot.com'"				},
+				"path": "/0"
+		},
+		"content": {
+			"groups": [
+				{
+					"title": "Contact Details",
+					"items": [
+                        {
+							"label": "First Name",
+                            "value": "{properties/firstname}"
+						},
+						{
+							"label": "Last Name",
+							"value": "{properties/lastname}"
+						},
+						{
+							"label": "Phone",
+							"value": "{portal-id}",
+							"type": "phone"
+						},
+						{
+							"label": "Email",
+							"value": "{properties/email}",
+							"type": "email"
+						}
+					]
+                },
+                 {
+                    "title": "Misc Info",
+					"items": [
+                        {
+                            "label": "Job Title", 
+                            "value": "{properties/jobtitle}",
+                            "icon":{
+                                "src": "https://pbs.twimg.com/profile_images/3491742741/212e42c07d3348251da10872e85aa6b0.jpeg"
+                            }
+                        },
+                        {
+                            "label": "Twitter Handle",
+                            "value": "{properties/twitterhandle}",
+                            "icon": {
+								"src": ""
+							}
+                        }
+                    ]
+                 },
+                {
+					"title": "Company Details",
+					"items": [
+						{
+							"label": "Company Name",
+							"value": "{properties/company}"
+						},
+						{
+							"label": "City",
+							"value": "{properties/city}"
+                        },
+                        {
+							"label": "State",
+							"value": "{properties/state}"
+						},
+						{
+							"label": "Website",
+							"value": "{properties/hs_email_domain}",
+						  	"url": "{properties/website}",
+							"type": "link"
+						}
+					]
+                }
+               
+			]
+		}
+    },
+    "sap.platform.mobilecards": {
+        "compatible": true
+    }
+}
